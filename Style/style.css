@@ -1,0 +1,553 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Bahnschrift", sans-serif;
+    font-size: x-large; /* propriété commune à tout le site */
+}
+
+body {
+    background-image: #ACB7C3; 
+    background-attachment: fixed;
+    height: 100%;
+}
+
+
+/** Propriétés de la barre de navigation ________________________________________________________________________________**/
+
+.active {
+   font-weight: bold; /* arrière-plan quand les boutons sont cliqués */
+   color: #1B263B; /* couleur du texte */
+   text-decoration: underline; /* souligner le texte */
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 25px 0; /* Augmente le padding vertical pour plus de hauteur */
+    overflow: hidden;
+    background-color: #E0E1DD;  /* propriété de la barre de navigation */
+    display: flex;
+    align-items: center; /* centre verticalement */
+    width: 100%; /* ou une largeur fixe comme 1200px */
+    border: 2px solid black; /* Ajoute une bordure noire de 2 pixels */
+}
+
+.titre-marieteam {
+    margin-right: auto; /* pousse les autres éléments à droite */
+}
+
+li b {
+    font-size: xx-large;
+    font-family: "Lucida fax";
+}
+
+
+.nav-buttons {
+    display: flex; /* permet d'aligner les boutons horizontalement */
+}
+
+li {
+    margin-left: 20px; /* espace entre les éléments */
+}
+
+li a {
+    font-size: large;
+    font-family: "Lucida fax";
+    display: block;
+    color: #1B263B;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none; /* permet de gérer le texte dans la navbar */
+}
+
+
+b {
+    font-weight: bold;
+}
+
+.connexion-btn {
+    font-size: large;
+    font-family: "Lucida fax";
+    cursor: pointer;
+    background-color: #415A77; /* couleur de fond bleue */
+    color: white; /* couleur du texte */
+    padding: 10px 8px; /* même padding que les autres boutons */
+    border-radius: 20px; /* arrondir les coins */
+    text-decoration: none; /* enlever le soulignement */
+}
+
+/** Propriétés de la page d'accueil ______________________________________________________________________________________**/
+/** Propriétés de l'intro 1 ______________________________________________________________________________________**/
+
+.intro {
+    text-align: center; /* Centre le texte */
+    margin-top: -70; /* Assure que la section est en haut de la page */
+    padding: 20px; /* Ajoute un peu d'espace autour de la section */
+}
+
+.intro h1 {
+    font-size: 3em; /* Titre très gros */
+    margin: 0; /* Supprime la marge par défaut */
+}
+
+.titre1 {
+    font-size: 1em; /* Même taille que h1 */
+    margin: 0; /* Supprime la marge par défaut */
+    color: #778DA9;
+}
+
+.intro h2 {
+    font-size: 0.8em; /* Taille de police pour le h2 */
+    margin-left: 525px; /* Décalage à gauche */
+    color: #778DA9;
+}
+
+.intro p {
+    font-size: 0.9em; /* Paragraphe plus petit */
+    max-width: 800px; /* Limite la largeur maximale du paragraphe */
+    margin: 20 auto; /* Centre le paragraphe horizontalement */
+    padding: 0 20px; /* Ajoute un espace de 20 pixels à gauche et à droite */
+}
+
+.separator {
+    border: none; /* Supprime la bordure par défaut */
+    height: 2px; /* Hauteur de la ligne */
+    background-color: #000; /* Couleur de la ligne */
+    max-width: 800px; /* Limite la largeur maximale du paragraphe */
+    margin: 20 auto; /* Centre la ligne horizontalement */
+    padding: 0 20px; /* Ajoute un espace de 20 pixels à gauche et à droite */
+}
+
+/** Propriétés de l'intro 2 ______________________________________________________________________________________**/
+
+.reservation {
+    text-align: center; /* Centre le texte */
+    padding: 20px; /* Ajoute un peu d'espace autour de la section */
+}
+
+.reservation h1 {
+    font-size: 3em; /* Titre très gros */
+    margin: 0; /* Supprime la marge par défaut */
+}
+
+.titre2 {
+    font-size: 1em; /* Même taille que h1 */
+    margin: 0; /* Supprime la marge par défaut */
+    color: #778DA9;
+}
+
+.reservation h2 {
+    font-size: 0.8em; /* Taille de police pour le h2 */
+    margin-left: 525px; /* Décalage à gauche */
+    color: #778DA9;
+}
+
+.reservation p {
+    font-size: 0.9em; /* Paragraphe plus petit */
+    max-width: 800px; /* Limite la largeur maximale du paragraphe */
+    margin: 20 auto; /* Centre le paragraphe horizontalement */
+    padding: 0 20px; /* Ajoute un espace de 20 pixels à gauche et à droite */
+}
+
+.btn-reserver {
+    margin: 20 auto; /* Centre le paragraphe horizontalement */
+    font-size: xx-large;
+    cursor: pointer;
+    background-color: #415A77; /* couleur de fond bleue */
+    color: white; /* couleur du texte */
+    padding: 10px 30px; /* même padding que les autres boutons */
+    border-radius: 20px; /* arrondir les coins */
+}
+
+.btn-add {
+    display: block; /* Permet d'utiliser margin auto */
+    margin: 10px auto; /* Centre horizontalement */
+    font-size: xx-large;
+    cursor: pointer;
+    background-color: #415A77;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 20px;
+    text-align: center; /* Centrer le texte */
+}
+
+.container-add {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    height: 80vh; /* Hauteur = toute la page */
+}
+
+/** Propriétés de l'onglet connexion et inscription ______________________________________________________________________________________**/
+
+.connexion {
+    text-align: center; /* Centre le texte */
+    margin-top: -70; /* Assure que la section est en haut de la page */
+    padding: 20px; /* Ajoute un peu d'espace autour de la section */
+}
+
+.connexion h1 {
+    font-size: 3em; /* Titre très gros */
+    margin: 0; /* Supprime la marge par défaut */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column; /* Aligne le label au-dessus du champ de saisie */
+    margin-bottom: 20px; /* Espace entre les groupes de champs */
+}
+
+label {
+    font-weight: bold; /* Met le label en gras pour le rendre plus visible */
+}
+
+input {
+    width: 100%; /* Prend toute la largeur du conteneur */
+    border: 1px solid #ccc; /* Bordure du champ */
+    border-radius: 10px; /* Coins arrondis */
+    max-width: 800px; /* Limite la largeur maximale du paragraphe */
+    margin: 30 auto; /* Centre le paragraphe horizontalement */
+    padding: 8;
+}
+
+select {
+    width: 100%; /* Prend toute la largeur du conteneur */
+    border: 1px solid #ccc; /* Bordure du champ */
+    border-radius: 10px; /* Coins arrondis */
+    max-width: 800px; /* Limite la largeur maximale du paragraphe */
+    margin: 30 auto; /* Centre le paragraphe horizontalement */
+    padding: 8;
+}
+
+.btn-connexion {
+    margin: 20 auto; /* Centre le paragraphe horizontalement */
+    font-size: xx-large;
+    cursor: pointer;
+    background-color: #415A77; /* couleur de fond bleue */
+    color: white; /* couleur du texte */
+    padding: 10px 30px; /* même padding que les autres boutons */
+    border-radius: 20px; /* arrondir les coins */
+}
+
+.btn-deconnexion {
+    margin: 20 auto; /* Centre le paragraphe horizontalement */
+    font-size: xx-large;
+    cursor: pointer;
+    background-color: #ff0000; /* couleur de fond bleue */
+    color: white; /* couleur du texte */
+    padding: 10px 30px; /* même padding que les autres boutons */
+    border-radius: 20px; /* arrondir les coins */
+}
+
+/** Propriétés de Reservation ______________________________________________________________________________________________**/
+ 
+.blockR {
+    margin: 0;
+    padding: 1%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ 
+.destination {
+    display: flex;
+    width: 100%;
+}
+ 
+.destination ul {
+    display: flex;
+    width: 70%;
+    list-style: none;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* page reserver */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+th {
+    background-color: #f2f2f2;
+}
+
+
+/** page de reservation
+
+/* Styles spécifiques à la réservation */
+._reservation-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+._reservation-title {
+    color: #2d3e50;
+}
+
+._reservation-info {
+    font-weight: bold;
+    color: #2d3e50;
+}
+
+._reservation-text {
+    margin-bottom: 10px;
+}
+
+._reservation-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+._reservation-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 45%;
+}
+
+._reservation-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: separate; /* Change 'collapse' en 'separate' pour permettre les bordures arrondies */
+    border-spacing: 0; /* Supprime l'espace entre les cellules */
+    border-radius: 10px; /* Arrondi les bords du tableau */
+    overflow: hidden; /* Assure que les coins arrondis sont bien appliqués */
+}
+
+._reservation-table th, ._facture-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+._reservation-table th {
+    background-color: #2d3e50;
+    color: white;
+}
+
+/* Appliquer les coins arrondis aux cellules */
+._reservation-table th:first-child {
+    border-top-left-radius: 10px;
+}
+
+._reservation-table th:last-child {
+    border-top-right-radius: 10px;
+}
+
+._reservation-table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+._reservation-table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+._reservation-quantity {
+    width: 65px;
+    text-align: center;
+}
+._reservation-button {
+    background-color: white;
+    border: 2px solid #2d3e50;
+    color: #2d3e50;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    transition: 0.3s ease-in-out;
+}
+
+._reservation-button:hover {
+    background-color: #2d3e50;
+    color: white;
+}
+
+/** Propriétés de AdminStats  ______________________________________________________________________________________________**/
+.stats-form {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.stats-form h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.form-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.form-group-stats {
+    flex: 1;
+    min-width: 200px;
+}
+
+.label-stats {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: #4b5563;
+}
+
+input[type="date"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+}
+
+.button-stats {
+    background-color: #415A77;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    height: 55px; /* Limiter la hauteur */
+    margin-top: 35px;
+    margin-left: 20px;
+    transition: background-color 0.2s;
+}
+
+.button-stats:hover {
+    background-color: #415A77;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.stat-header h3 {
+    font-size: 1.125rem;
+    color: #1f2937;
+}
+
+.details-section {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.details-section h3 {
+    font-size: 1.125rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.details-list {
+    padding: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+}
+
+.detail-item:not(:last-child) {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.detail-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.detail-value {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.arrow {
+    color: #9ca3af;
+}
+
+/** Proprieter Facture ______________________________________________________________________________________________**/
+
+._facture-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: separate; /* Change 'collapse' en 'separate' pour permettre les bordures arrondies */
+    border-spacing: 0; /* Supprime l'espace entre les cellules */
+    border-radius: 10px; /* Arrondi les bords du tableau */
+    overflow: hidden; /* Assure que les coins arrondis sont bien appliqués */
+}
+
+._facture-table th, ._facture-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+._facture-table th {
+    background-color: #2d3e50;
+    color: white;
+}
+
+/* Appliquer les coins arrondis aux cellules */
+._facture-table th:first-child {
+    border-top-left-radius: 10px;
+}
+
+._facture-table th:last-child {
+    border-top-right-radius: 10px;
+}
+
+._facture-table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+._facture-table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+
