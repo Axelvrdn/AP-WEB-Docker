@@ -1,31 +1,36 @@
 <?php
 include '../Fonctions/scriptUserConnecte.php'; 
 include '../Fonctions/scriptAddLiaison.php';
+include '../Fonctions/scriptModifierAdmin.php';
+
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $date = isset($_POST['date']) ? htmlspecialchars($_POST['date']) : null;
-    $heure = isset($_POST['heure']) ? htmlspecialchars($_POST['heure']) : "";
-    $Description = isset($_POST['Description']) ? htmlspecialchars($_POST['Description']) : "";
-    $bateau = isset($_POST['bateau']) ? (int) $_POST['bateau'] : 0;
+    $id_travers = isset($_POST['id_travers']) ? htmlspecialchars($_POST['id_travers']) : "";
+    $date = isset($_POST['date_travers']) ? htmlspecialchars($_POST['date_travers']) : null;
+    $heure = isset($_POST['heure_travers']) ? htmlspecialchars($_POST['heure_travers']) : "";
+    $Description = isset($_POST['desc_travers']) ? htmlspecialchars($_POST['desc_travers']) : "";
+    $nom_bateau = isset($_POST['bateau']) ? htmlspecialchars($_POST['bateau']) : "";
 
-    $distance_miles = isset($_POST['distance_miles']) ? htmlspecialchars($_POST['distance_miles']) : "";
+    $distance_miles = isset($_POST['distance']) ? htmlspecialchars($_POST['distance']) : "";
     $id_port_depart = isset($_POST['port_depart']) ? htmlspecialchars($_POST['port_depart']) : "";
     $id_port_arrivee = isset($_POST['port_arrivee']) ? htmlspecialchars($_POST['port_arrivee']) : "";
     $secteur = isset($_POST['secteur']) ? htmlspecialchars($_POST['secteur']) : "";
 
     // Récupération des noms depuis la BDD
-    $nom_bateau = getBateauIdByNom($bateau); // nouvelle fonction à créer
+    $id_liaison = getLiaisonIdByNom($id_travers);
+    $bateau = getBateauIdByNom($nom_bateau);
     $nom_port_depart = getNomPort($id_port_depart);
     $nom_port_arrivee = getNomPort($id_port_arrivee);
     $nom_secteur = getNomSecteur($secteur);
 
     // Stockage de la traversée
-    $id_travers = addTravers($date,$heure,$Description,$bateau);
+    modifTravers($id_travers, $date,$heure,$Description,$bateau);
     if ($id_travers) {
-      $idliaison = addLiaison($distance_miles, $id_port_depart, $id_port_arrivee, $secteur, $id_travers);
-      $prix = Prix($id_travers);
+      modifLiaison($id_liaison,$distance_miles, $id_port_depart, $id_port_arrivee, $secteur, $id_travers);
+      $prix = Prix($id_liaison);
     } else {
-        echo "<p>Erreur lors de la création de la traversée.</p>";
+        echo "<p>Erreur lors de la modification de la traversée.</p>";
     }
 }
 

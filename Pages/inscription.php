@@ -39,7 +39,7 @@
     <section class="connexion">
         <h1>Créer votre <span class="titre1">Compte</span></h1>
         <br><br>
-        <form action="inscription.php" method="POST" id="leForm"> <!-- Action vers le même fichier pour traitement -->
+        <form method="POST" id="leForm"> <!-- Action vers le même fichier pour traitement -->
             <div class="form-group">
                 <label for="nom">Nom :</label>
                 <input type="text" id="nom" name="nom" required />

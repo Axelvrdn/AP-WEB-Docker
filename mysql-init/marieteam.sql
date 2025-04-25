@@ -1,14 +1,11 @@
-CREATE DATABASE IF NOT EXISTS marieteam;
-USE marieteam;
-
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 27 mars 2025 à 17:52
--- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Généré le : mar. 22 avr. 2025 à 16:19
+-- Version du serveur : 10.4.24-MariaDB
+-- Version de PHP : 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,15 +34,15 @@ CREATE TABLE `bateau` (
   `larg_bateau` decimal(4,2) DEFAULT NULL,
   `vitesse_bateau` varchar(50) DEFAULT NULL,
   `image_url` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `bateau`
 --
 
 INSERT INTO `bateau` (`id_bateau`, `nom_bateau`, `long_bateau`, `larg_bateau`, `vitesse_bateau`, `image_url`) VALUES
-(1, 'Luce Isle', 37.20, 8.60, '26 noeuds', 'https://static.actu.fr/uploads/2022/05/145d9c4e36926c85d9c4e3692f26d9v-960x640.jpg'),
-(2, 'Al\'xi', 25.00, 7.00, '16 noeuds', 'https://www.clickferry.com/_next/image?url=https%3A%2F%2Fd37xq4l5mxj0g5.cloudfront.net%2FCORSICA_a83cabd26a.jpg&w=1920&q=75');
+(1, 'Luce Isle', '37.20', '8.60', '26 noeuds', 'https://static.actu.fr/uploads/2022/05/145d9c4e36926c85d9c4e3692f26d9v-960x640.jpg'),
+(2, 'Al\'xi', '25.00', '7.00', '16 noeuds', 'https://www.clickferry.com/_next/image?url=https%3A%2F%2Fd37xq4l5mxj0g5.cloudfront.net%2FCORSICA_a83cabd26a.jpg&w=1920&q=75');
 
 -- --------------------------------------------------------
 
@@ -56,7 +53,7 @@ INSERT INTO `bateau` (`id_bateau`, `nom_bateau`, `long_bateau`, `larg_bateau`, `
 CREATE TABLE `catégorie` (
   `id_cat` int(11) NOT NULL,
   `desc_cat` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `catégorie`
@@ -76,7 +73,7 @@ INSERT INTO `catégorie` (`id_cat`, `desc_cat`) VALUES
 CREATE TABLE `choisir` (
   `id_client` int(11) NOT NULL,
   `id_resa` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `choisir`
@@ -84,7 +81,7 @@ CREATE TABLE `choisir` (
 
 INSERT INTO `choisir` (`id_client`, `id_resa`) VALUES
 (2, 8),
-(3, 10);
+(4, 20);
 
 -- --------------------------------------------------------
 
@@ -95,7 +92,7 @@ INSERT INTO `choisir` (`id_client`, `id_resa`) VALUES
 CREATE TABLE `classer` (
   `id_type` int(11) NOT NULL,
   `id_cat` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -111,7 +108,7 @@ CREATE TABLE `client` (
   `tel_client` varchar(50) DEFAULT NULL,
   `mail_client` varchar(50) DEFAULT NULL,
   `id_utilisateur` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `client`
@@ -119,7 +116,8 @@ CREATE TABLE `client` (
 
 INSERT INTO `client` (`id_client`, `nom_client`, `prenom_client`, `adresse_client`, `tel_client`, `mail_client`, `id_utilisateur`) VALUES
 (2, 'Benault', 'Lucas', '3 ch. des Margueritois', '0633504993', 'lucas.benault@gmail.com', 12),
-(3, 'Marieteam', 'Admin', 'Avenue Gaston Berger', '0633504993', 'aaa@gmail.com', 11);
+(3, 'Marieteam', 'Admin', 'Avenue Gaston Berger', '0633504993', 'aaa@gmail.com', 11),
+(4, 'Verdon', 'Axel', 'dqzdq', '1234567890', 'dqzdq@gmail.com', 13);
 
 -- --------------------------------------------------------
 
@@ -131,7 +129,7 @@ CREATE TABLE `contenir` (
   `id_bateau` int(11) NOT NULL,
   `id_cat` int(11) NOT NULL,
   `capac_bateau_pass` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `contenir`
@@ -155,7 +153,7 @@ CREATE TABLE `enregistrer` (
   `id_resa` int(11) NOT NULL,
   `id_type` int(11) NOT NULL,
   `quantité` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `enregistrer`
@@ -167,7 +165,15 @@ INSERT INTO `enregistrer` (`id_resa`, `id_type`, `quantité`) VALUES
 (8, 8, '2'),
 (9, 1, '200'),
 (9, 5, '5'),
-(9, 8, '3');
+(9, 8, '3'),
+(20, 1, '21'),
+(20, 2, '24'),
+(20, 3, '54'),
+(20, 4, '4'),
+(20, 5, '2'),
+(20, 6, '8'),
+(20, 7, '0'),
+(20, 8, '0');
 
 --
 -- Déclencheurs `enregistrer`
@@ -326,7 +332,7 @@ DELIMITER ;
 CREATE TABLE `equipement` (
   `id_equip` int(11) NOT NULL,
   `desc_equip` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `equipement`
@@ -351,19 +357,19 @@ CREATE TABLE `liaison` (
   `id_port_1` int(11) NOT NULL,
   `id_secteur` int(11) NOT NULL,
   `id_travers` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `liaison`
 --
 
 INSERT INTO `liaison` (`id_liaison`, `dist_milles`, `id_port`, `id_port_1`, `id_secteur`, `id_travers`) VALUES
-(1, 8.30, 1, 2, 1, 2),
-(3, 8.80, 1, 5, 2, 30),
-(4, 8.80, 5, 1, 2, 31),
-(5, 7.70, 6, 7, 3, 32),
-(6, 7.40, 7, 6, 3, 33),
-(7, 8.80, 1, 2, 1, 3);
+(1, '8.30', 1, 2, 1, 2),
+(3, '8.80', 1, 5, 2, 30),
+(4, '8.80', 5, 1, 2, 31),
+(5, '7.70', 6, 7, 3, 32),
+(6, '7.40', 7, 6, 3, 33),
+(7, '8.80', 1, 2, 1, 3);
 
 --
 -- Déclencheurs `liaison`
@@ -383,6 +389,64 @@ CREATE TRIGGER `Check_Ports_Update` BEFORE UPDATE ON `liaison` FOR EACH ROW BEGI
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Le port d''arrivée ne peut pas être le même que le port de départ';
     END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `tarif_auto_insert` AFTER INSERT ON `liaison` FOR EACH ROW BEGIN
+
+  DECLARE base_tarif DECIMAL(10,2);
+
+  SET base_tarif = NEW.dist_milles * 301.20 / (125 + 5 * 5 + 3 * 8);
+ 
+  INSERT INTO tarifer (id_liaison, id_type, date_debut, Tarif) VALUES
+
+    (NEW.id_liaison, 1, CURDATE(), ROUND(base_tarif * 1, 2)),
+
+    (NEW.id_liaison, 2, CURDATE(), ROUND(base_tarif * 0.75, 2)),
+
+    (NEW.id_liaison, 3, CURDATE(), ROUND(base_tarif * 0.4, 2)),
+
+    (NEW.id_liaison, 4, CURDATE(), ROUND(base_tarif * 5, 2)),
+
+    (NEW.id_liaison, 5, CURDATE(), ROUND(base_tarif * 6, 2)),
+
+    (NEW.id_liaison, 6, CURDATE(), ROUND(base_tarif * 7, 2)),
+
+    (NEW.id_liaison, 7, CURDATE(), ROUND(base_tarif * 8, 2)),
+
+    (NEW.id_liaison, 8, CURDATE(), ROUND(base_tarif * 10, 2));
+
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `verif_liaison_before_insert` BEFORE INSERT ON `liaison` FOR EACH ROW BEGIN
+
+  -- Vérifie que les deux ports sont différents
+
+  IF NEW.id_port = NEW.id_port_1 THEN
+
+    SIGNAL SQLSTATE '45000'
+
+    SET MESSAGE_TEXT = 'Les ports de départ et d''arrivée doivent être différents.';
+
+  END IF;
+ 
+  -- Vérifie que l'id_travers n'existe pas déjà
+
+  IF EXISTS (
+
+    SELECT 1 FROM liaison WHERE id_travers = NEW.id_travers
+
+  ) THEN
+
+    SIGNAL SQLSTATE '45000'
+
+    SET MESSAGE_TEXT = 'Cette traversée est déjà assignée à une liaison.';
+
+  END IF;
+
 END
 $$
 DELIMITER ;
@@ -475,7 +539,7 @@ CREATE TABLE `placedispovéhiculesup2m` (
 CREATE TABLE `port` (
   `id_port` int(11) NOT NULL,
   `nom_port` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `port`
@@ -499,7 +563,7 @@ INSERT INTO `port` (`id_port`, `nom_port`) VALUES
 CREATE TABLE `période` (
   `date_debut` date NOT NULL,
   `date_fin` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `période`
@@ -518,18 +582,18 @@ INSERT INTO `période` (`date_debut`, `date_fin`) VALUES
 
 CREATE TABLE `reservation` (
   `id_resa` int(11) NOT NULL,
-  `date_resa` date DEFAULT NULL,
+  `date_resa` datetime DEFAULT NULL,
   `id_travers` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `reservation`
 --
 
 INSERT INTO `reservation` (`id_resa`, `date_resa`, `id_travers`) VALUES
-(8, '2025-03-26', 2),
-(9, '2025-03-27', 33),
-(10, '2025-03-27', 2);
+(8, '2025-03-26 00:00:00', 2),
+(9, '2025-03-27 00:00:00', 33),
+(20, '2025-04-22 14:34:18', 2);
 
 -- --------------------------------------------------------
 
@@ -540,7 +604,7 @@ INSERT INTO `reservation` (`id_resa`, `date_resa`, `id_travers`) VALUES
 CREATE TABLE `secteur` (
   `id_secteur` int(11) NOT NULL,
   `nom_secteur` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `secteur`
@@ -562,69 +626,69 @@ CREATE TABLE `tarifer` (
   `id_type` int(11) NOT NULL,
   `date_debut` date NOT NULL,
   `Tarif` decimal(5,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `tarifer`
 --
 
 INSERT INTO `tarifer` (`id_liaison`, `id_type`, `date_debut`, `Tarif`) VALUES
-(1, 1, '2024-09-16', 20.00),
-(1, 2, '2024-09-16', 13.10),
-(1, 3, '2024-09-16', 7.00),
-(1, 4, '2024-09-16', 95.00),
-(1, 5, '2024-09-16', 142.00),
-(1, 6, '2024-09-16', 208.00),
-(1, 7, '2024-09-16', 226.00),
-(1, 8, '2024-09-16', 295.00),
-(2, 1, '2024-09-16', 25.00),
-(2, 2, '2024-09-16', 18.10),
-(2, 3, '2024-09-16', 12.00),
-(2, 4, '2024-09-16', 100.00),
-(2, 5, '2024-09-16', 147.00),
-(2, 6, '2024-09-16', 213.00),
-(2, 7, '2024-09-16', 231.00),
-(2, 8, '2024-09-16', 300.00),
-(3, 1, '2024-09-16', 17.00),
-(3, 2, '2024-09-16', 16.00),
-(3, 3, '2024-09-16', 10.00),
-(3, 4, '2024-09-16', 90.00),
-(3, 5, '2024-09-16', 143.00),
-(3, 6, '2024-09-16', 210.00),
-(3, 7, '2024-09-16', 215.00),
-(3, 8, '2024-09-16', 285.00),
-(4, 1, '2024-09-16', 25.00),
-(4, 2, '2024-09-16', 18.10),
-(4, 3, '2024-09-16', 12.00),
-(4, 4, '2024-09-16', 100.00),
-(4, 5, '2024-09-16', 147.00),
-(4, 6, '2024-09-16', 213.00),
-(4, 7, '2024-09-16', 231.00),
-(4, 8, '2024-09-16', 300.00),
-(5, 1, '2024-09-16', 17.00),
-(5, 2, '2024-09-16', 11.00),
-(5, 3, '2024-09-16', 3.00),
-(5, 4, '2024-09-16', 80.00),
-(5, 5, '2024-09-16', 120.00),
-(5, 6, '2024-09-16', 200.00),
-(5, 7, '2024-09-16', 223.00),
-(5, 8, '2024-09-16', 275.00),
-(6, 1, '2024-09-16', 17.00),
-(6, 2, '2024-09-16', 11.00),
-(6, 3, '2024-09-16', 3.00),
-(6, 4, '2024-09-16', 80.00),
-(6, 5, '2024-09-16', 120.00),
-(6, 6, '2024-09-16', 200.00),
-(6, 7, '2024-09-16', 223.00),
-(6, 8, '2024-09-16', 275.00),
-(7, 1, '2024-09-16', 17.00),
-(7, 2, '2024-09-16', 11.00),
-(7, 3, '2024-09-16', 3.00),
-(7, 4, '2024-09-16', 80.00),
-(7, 5, '2024-09-16', 120.00),
-(7, 6, '2024-09-16', 200.00),
-(7, 7, '2024-09-16', 223.00),
-(7, 8, '2024-09-16', 275.00);
+(1, 1, '2024-09-16', '20.00'),
+(1, 2, '2024-09-16', '13.10'),
+(1, 3, '2024-09-16', '7.00'),
+(1, 4, '2024-09-16', '95.00'),
+(1, 5, '2024-09-16', '142.00'),
+(1, 6, '2024-09-16', '208.00'),
+(1, 7, '2024-09-16', '226.00'),
+(1, 8, '2024-09-16', '295.00'),
+(2, 1, '2024-09-16', '25.00'),
+(2, 2, '2024-09-16', '18.10'),
+(2, 3, '2024-09-16', '12.00'),
+(2, 4, '2024-09-16', '100.00'),
+(2, 5, '2024-09-16', '147.00'),
+(2, 6, '2024-09-16', '213.00'),
+(2, 7, '2024-09-16', '231.00'),
+(2, 8, '2024-09-16', '300.00'),
+(3, 1, '2024-09-16', '17.00'),
+(3, 2, '2024-09-16', '16.00'),
+(3, 3, '2024-09-16', '10.00'),
+(3, 4, '2024-09-16', '90.00'),
+(3, 5, '2024-09-16', '143.00'),
+(3, 6, '2024-09-16', '210.00'),
+(3, 7, '2024-09-16', '215.00'),
+(3, 8, '2024-09-16', '285.00'),
+(4, 1, '2024-09-16', '25.00'),
+(4, 2, '2024-09-16', '18.10'),
+(4, 3, '2024-09-16', '12.00'),
+(4, 4, '2024-09-16', '100.00'),
+(4, 5, '2024-09-16', '147.00'),
+(4, 6, '2024-09-16', '213.00'),
+(4, 7, '2024-09-16', '231.00'),
+(4, 8, '2024-09-16', '300.00'),
+(5, 1, '2024-09-16', '17.00'),
+(5, 2, '2024-09-16', '11.00'),
+(5, 3, '2024-09-16', '3.00'),
+(5, 4, '2024-09-16', '80.00'),
+(5, 5, '2024-09-16', '120.00'),
+(5, 6, '2024-09-16', '200.00'),
+(5, 7, '2024-09-16', '223.00'),
+(5, 8, '2024-09-16', '275.00'),
+(6, 1, '2024-09-16', '17.00'),
+(6, 2, '2024-09-16', '11.00'),
+(6, 3, '2024-09-16', '3.00'),
+(6, 4, '2024-09-16', '80.00'),
+(6, 5, '2024-09-16', '120.00'),
+(6, 6, '2024-09-16', '200.00'),
+(6, 7, '2024-09-16', '223.00'),
+(6, 8, '2024-09-16', '275.00'),
+(7, 1, '2024-09-16', '17.00'),
+(7, 2, '2024-09-16', '11.00'),
+(7, 3, '2024-09-16', '3.00'),
+(7, 4, '2024-09-16', '80.00'),
+(7, 5, '2024-09-16', '120.00'),
+(7, 6, '2024-09-16', '200.00'),
+(7, 7, '2024-09-16', '223.00'),
+(7, 8, '2024-09-16', '275.00');
 
 -- --------------------------------------------------------
 
@@ -638,7 +702,7 @@ CREATE TABLE `traversée` (
   `heure_travers` time DEFAULT NULL,
   `desc_travers` varchar(50) NOT NULL,
   `id_bateau` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `traversée`
@@ -661,7 +725,7 @@ INSERT INTO `traversée` (`id_travers`, `date_travers`, `heure_travers`, `desc_t
 CREATE TABLE `type` (
   `id_type` int(11) NOT NULL,
   `desc_type` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `type`
@@ -690,7 +754,7 @@ CREATE TABLE `utilisateur` (
   `mail_user` varchar(50) DEFAULT NULL,
   `mdp_user` varchar(200) DEFAULT NULL,
   `typer_user` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `utilisateur`
@@ -704,13 +768,32 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom_user`, `prenom_user`, `mail_us
 -- --------------------------------------------------------
 
 --
+-- Doublure de structure pour la vue `vue_tarifs_dynamiques`
+-- (Voir ci-dessous la vue réelle)
+--
+CREATE TABLE `vue_tarifs_dynamiques` (
+`id_liaison` int(11)
+,`dist_milles` decimal(4,2)
+,`cout_total` decimal(8,2)
+,`nb_passagers` int(3)
+,`nb_veh_inf2m` int(1)
+,`nb_veh_sup2m` int(1)
+,`total_unites` int(7)
+,`tarif_base_passager` decimal(8,2)
+,`tarif_veh_inf2m` decimal(9,2)
+,`tarif_veh_sup2m` decimal(9,2)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `être_équipé`
 --
 
 CREATE TABLE `être_équipé` (
   `id_bateau` int(11) NOT NULL,
   `id_equip` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `être_équipé`
@@ -731,7 +814,7 @@ INSERT INTO `être_équipé` (`id_bateau`, `id_equip`) VALUES
 --
 DROP TABLE IF EXISTS `nbpassagerresa`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER VIEW `nbpassagerresa`  AS SELECT `t`.`id_travers` AS `id_travers`, coalesce(sum(`e`.`quantité`),0) AS `NbPersonneResa` FROM ((`traversée` `t` left join `reservation` `r` on(`t`.`id_travers` = `r`.`id_travers`)) left join `enregistrer` `e` on(`r`.`id_resa` = `e`.`id_resa` and `e`.`id_type` in (1,2,3))) WHERE `t`.`date_travers` > curdate() GROUP BY `t`.`id_travers` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER VIEW `nbpassagerresa`  AS SELECT `t`.`id_travers` AS `id_travers`, coalesce(sum(`e`.`quantité`),0) AS `NbPersonneResa` FROM ((`traversée` `t` left join `reservation` `r` on(`t`.`id_travers` = `r`.`id_travers`)) left join `enregistrer` `e` on(`r`.`id_resa` = `e`.`id_resa` and `e`.`id_type` in (1,2,3))) WHERE `t`.`date_travers` > curdate() GROUP BY `t`.`id_travers`  ;
 
 -- --------------------------------------------------------
 
@@ -740,7 +823,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER 
 --
 DROP TABLE IF EXISTS `nbréssavertion`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `nbréssavertion`  AS SELECT `t`.`id_travers` AS `id_travers`, coalesce(sum(case when `e`.`id_type` in (1,2,3) then `e`.`quantité` end),0) AS `NbPersonneResa`, coalesce(sum(case when `e`.`id_type` in (4,5) then `e`.`quantité` end),0) AS `NbVehiculeInf2mResa`, coalesce(sum(case when `e`.`id_type` in (6,7,8) then `e`.`quantité` end),0) AS `NbVehiculeSup2mResa` FROM ((`traversée` `t` left join `reservation` `r` on(`t`.`id_travers` = `r`.`id_travers`)) left join `enregistrer` `e` on(`r`.`id_resa` = `e`.`id_resa`)) WHERE `t`.`date_travers` > curdate() GROUP BY `t`.`id_travers` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `nbréssavertion`  AS SELECT `t`.`id_travers` AS `id_travers`, coalesce(sum(case when `e`.`id_type` in (1,2,3) then `e`.`quantité` end),0) AS `NbPersonneResa`, coalesce(sum(case when `e`.`id_type` in (4,5) then `e`.`quantité` end),0) AS `NbVehiculeInf2mResa`, coalesce(sum(case when `e`.`id_type` in (6,7,8) then `e`.`quantité` end),0) AS `NbVehiculeSup2mResa` FROM ((`traversée` `t` left join `reservation` `r` on(`t`.`id_travers` = `r`.`id_travers`)) left join `enregistrer` `e` on(`r`.`id_resa` = `e`.`id_resa`)) WHERE `t`.`date_travers` > curdate() GROUP BY `t`.`id_travers`  ;
 
 -- --------------------------------------------------------
 
@@ -749,7 +832,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `nbvéhiculeinf2mresa`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER VIEW `nbvéhiculeinf2mresa`  AS SELECT `t`.`id_travers` AS `id_travers`, coalesce(sum(`e`.`quantité`),0) AS `NbVéhiculeResa` FROM ((`traversée` `t` left join `reservation` `r` on(`t`.`id_travers` = `r`.`id_travers`)) left join `enregistrer` `e` on(`r`.`id_resa` = `e`.`id_resa` and `e`.`id_type` in (4,5))) WHERE `t`.`date_travers` > curdate() GROUP BY `t`.`id_travers` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER VIEW `nbvéhiculeinf2mresa`  AS SELECT `t`.`id_travers` AS `id_travers`, coalesce(sum(`e`.`quantité`),0) AS `NbVéhiculeResa` FROM ((`traversée` `t` left join `reservation` `r` on(`t`.`id_travers` = `r`.`id_travers`)) left join `enregistrer` `e` on(`r`.`id_resa` = `e`.`id_resa` and `e`.`id_type` in (4,5))) WHERE `t`.`date_travers` > curdate() GROUP BY `t`.`id_travers`  ;
 
 -- --------------------------------------------------------
 
@@ -758,7 +841,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER 
 --
 DROP TABLE IF EXISTS `nbvéhiculesup2mresa`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER VIEW `nbvéhiculesup2mresa`  AS SELECT `t`.`id_travers` AS `id_travers`, coalesce(sum(`e`.`quantité`),0) AS `NbVéhiculeResa` FROM ((`traversée` `t` left join `reservation` `r` on(`t`.`id_travers` = `r`.`id_travers`)) left join `enregistrer` `e` on(`r`.`id_resa` = `e`.`id_resa` and `e`.`id_type` in (6,7,8))) WHERE `t`.`date_travers` > curdate() GROUP BY `t`.`id_travers` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER VIEW `nbvéhiculesup2mresa`  AS SELECT `t`.`id_travers` AS `id_travers`, coalesce(sum(`e`.`quantité`),0) AS `NbVéhiculeResa` FROM ((`traversée` `t` left join `reservation` `r` on(`t`.`id_travers` = `r`.`id_travers`)) left join `enregistrer` `e` on(`r`.`id_resa` = `e`.`id_resa` and `e`.`id_type` in (6,7,8))) WHERE `t`.`date_travers` > curdate() GROUP BY `t`.`id_travers`  ;
 
 -- --------------------------------------------------------
 
@@ -776,7 +859,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER 
 --
 DROP TABLE IF EXISTS `placedispovéhiculeinf2m`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER VIEW `placedispovéhiculeinf2m`  AS SELECT `traversée`.`id_travers` AS `id_travers`, `contenir`.`capac_bateau_pass`- `nbvéhiculeinf2mresa`.`NbVéhiculeResa` AS `PlaceDispo` FROM (((`nbvéhiculeinf2mresa` join `traversée` on(`nbvéhiculeinf2mresa`.`id_travers` = `traversée`.`id_travers`)) join `bateau` on(`traversée`.`id_bateau` = `bateau`.`id_bateau`)) join `contenir` on(`bateau`.`id_bateau` = `contenir`.`id_bateau`)) WHERE `contenir`.`id_cat` = 2 ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER VIEW `placedispovéhiculeinf2m`  AS SELECT `traversée`.`id_travers` AS `id_travers`, `contenir`.`capac_bateau_pass`- `nbvéhiculeinf2mresa`.`NbVéhiculeResa` AS `PlaceDispo` FROM (((`nbvéhiculeinf2mresa` join `traversée` on(`nbvéhiculeinf2mresa`.`id_travers` = `traversée`.`id_travers`)) join `bateau` on(`traversée`.`id_bateau` = `bateau`.`id_bateau`)) join `contenir` on(`bateau`.`id_bateau` = `contenir`.`id_bateau`)) WHERE `contenir`.`id_cat` = 2  ;
 
 -- --------------------------------------------------------
 
@@ -785,7 +868,16 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER 
 --
 DROP TABLE IF EXISTS `placedispovéhiculesup2m`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER VIEW `placedispovéhiculesup2m`  AS SELECT `traversée`.`id_travers` AS `id_travers`, `contenir`.`capac_bateau_pass`- `nbvéhiculesup2mresa`.`NbVéhiculeResa` AS `PlaceDispo` FROM (((`nbvéhiculesup2mresa` join `traversée` on(`nbvéhiculesup2mresa`.`id_travers` = `traversée`.`id_travers`)) join `bateau` on(`traversée`.`id_bateau` = `bateau`.`id_bateau`)) join `contenir` on(`bateau`.`id_bateau` = `contenir`.`id_bateau`)) WHERE `contenir`.`id_cat` = 3 ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`marieteam`@`localhost` SQL SECURITY DEFINER VIEW `placedispovéhiculesup2m`  AS SELECT `traversée`.`id_travers` AS `id_travers`, `contenir`.`capac_bateau_pass`- `nbvéhiculesup2mresa`.`NbVéhiculeResa` AS `PlaceDispo` FROM (((`nbvéhiculesup2mresa` join `traversée` on(`nbvéhiculesup2mresa`.`id_travers` = `traversée`.`id_travers`)) join `bateau` on(`traversée`.`id_bateau` = `bateau`.`id_bateau`)) join `contenir` on(`bateau`.`id_bateau` = `contenir`.`id_bateau`)) WHERE `contenir`.`id_cat` = 3  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la vue `vue_tarifs_dynamiques`
+--
+DROP TABLE IF EXISTS `vue_tarifs_dynamiques`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vue_tarifs_dynamiques`  AS SELECT `l`.`id_liaison` AS `id_liaison`, `l`.`dist_milles` AS `dist_milles`, round(`l`.`dist_milles` * 301.20,2) AS `cout_total`, 125 AS `nb_passagers`, 5 AS `nb_veh_inf2m`, 3 AS `nb_veh_sup2m`, 125 * 1 + 5 * 5 + 3 * 8 AS `total_unites`, round(`l`.`dist_milles` * 301.20 / (125 + 5 * 5 + 3 * 8),2) AS `tarif_base_passager`, round(`l`.`dist_milles` * 301.20 / (125 + 5 * 5 + 3 * 8) * 5,2) AS `tarif_veh_inf2m`, round(`l`.`dist_milles` * 301.20 / (125 + 5 * 5 + 3 * 8) * 8,2) AS `tarif_veh_sup2m` FROM `liaison` AS `l` GROUP BY `l`.`id_liaison`, `l`.`dist_milles`  ;
 
 --
 -- Index pour les tables déchargées
@@ -936,7 +1028,7 @@ ALTER TABLE `catégorie`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `equipement`
@@ -960,7 +1052,7 @@ ALTER TABLE `port`
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id_resa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_resa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT pour la table `secteur`
@@ -972,7 +1064,7 @@ ALTER TABLE `secteur`
 -- AUTO_INCREMENT pour la table `traversée`
 --
 ALTER TABLE `traversée`
-  MODIFY `id_travers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_travers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT pour la table `type`
@@ -1032,6 +1124,29 @@ ALTER TABLE `liaison`
   ADD CONSTRAINT `liaison_ibfk_2` FOREIGN KEY (`id_port_1`) REFERENCES `port` (`id_port`),
   ADD CONSTRAINT `liaison_ibfk_3` FOREIGN KEY (`id_secteur`) REFERENCES `secteur` (`id_secteur`),
   ADD CONSTRAINT `liaison_ibfk_4` FOREIGN KEY (`id_travers`) REFERENCES `traversée` (`id_travers`);
+
+DELIMITER $$
+--
+-- Évènements
+--
+CREATE DEFINER=`root`@`localhost` EVENT `delete_unlinked_reservations` ON SCHEDULE EVERY 5 MINUTE STARTS '2025-04-22 14:51:19' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+  DELETE FROM choisir
+  WHERE id_resa IN (
+    SELECT r.id_resa
+    FROM reservation r
+    LEFT JOIN enregistrer e ON r.id_resa = e.id_resa
+    WHERE e.id_resa IS NULL
+      AND r.date_resa <= NOW() - INTERVAL 1 HOUR
+  );
+
+  DELETE FROM reservation
+  WHERE id_resa NOT IN (
+    SELECT DISTINCT id_resa FROM enregistrer
+  )
+  AND date_resa <= NOW() - INTERVAL 1 HOUR;
+END$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

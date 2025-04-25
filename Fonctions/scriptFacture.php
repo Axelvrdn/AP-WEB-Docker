@@ -35,7 +35,7 @@ function AddResa($id_travers, $id_client) {
         $pdo->beginTransaction(); // Démarre une transaction pour éviter les incohérences en cas d'erreur
 
         // 1. Insérer la réservation
-        $sql = "INSERT INTO `reservation` (`date_resa`, `id_travers`) VALUES (CURDATE(), :id_travers)";
+        $sql = "INSERT INTO `reservation` (`date_resa`, `id_travers`) VALUES (NOW(), :id_travers)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':id_travers', $id_travers, PDO::PARAM_INT);
         $stmt->execute();

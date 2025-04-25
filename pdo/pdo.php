@@ -12,9 +12,9 @@ function connexionBase($servername, $username, $password, $dbname) {
     }
 }
 
-$servername = "db";
+$servername = "127.0.0.1";
 $username = "root";
-$password = "JesuisAxel!";
+$password = "";
 $dbname = "marieteam";
 
 $pdo = connexionBase($servername, $username, $password, $dbname);

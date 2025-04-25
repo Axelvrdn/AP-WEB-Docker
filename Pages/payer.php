@@ -43,8 +43,21 @@
 <body>
 <div class="_reservation-container">
 <?php
-include '../Fonctions/scriptFacture.php';
+include '../Fonctions/scriptPayer.php';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $id_travers = isset($_POST['id_travers']) ? htmlspecialchars($_POST['id_travers']) : null;
-}
+$id_resa = isset($_POST['id_resa']) ? htmlspecialchars($_POST['id_resa']) : null;
+$nbA = isset($_POST['nbA']) ? htmlspecialchars($_POST['nbA']) : null;
+$nbJ = isset($_POST['nbJ']) ? htmlspecialchars($_POST['nbJ']) : null;
+$nbE = isset($_POST['nbE']) ? htmlspecialchars($_POST['nbE']) : null;
+$nbVi4 = isset($_POST['nbVi4']) ? htmlspecialchars($_POST['nbVi4']) : null;
+$nbVi5 = isset($_POST['nbVi5']) ? htmlspecialchars($_POST['nbVi5']) : null;
+$nbF = isset($_POST['nbF']) ? htmlspecialchars($_POST['nbF']) : null;
+$nbCc = isset($_POST['nbCc']) ? htmlspecialchars($_POST['nbCc']) : null;
+$nbC = isset($_POST['nbC']) ? htmlspecialchars($_POST['nbC']) : null;
+
+enregistrer($id_resa, $nbA, $nbJ, $nbE, $nbVi4, $nbVi5, $nbF, $nbCc, $nbC);
+
+?>
+
+<h1>Votre paiement a été effectué avec succès.</h1>
+

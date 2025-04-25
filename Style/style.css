@@ -551,3 +551,143 @@ input[type="date"] {
 }
 
 
+
+
+/* Block Réservation */
+.blockR {
+    margin: 20px;
+    padding: 20px;
+    background-color: #E0E1DD;
+    border-radius: 10px;
+    border: 2px solid #1B263B;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .destination {
+    margin-bottom: 10px;
+  }
+  
+  .destination ul {
+    display: flex;
+    gap: 5px;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  .destination ul {
+    white-space: nowrap; /* Empêche le texte de se couper et de passer à la ligne suivante */
+}
+  
+  .destination button {
+    font-size: large;
+    font-family: "Lucida fax";
+    background-color: #415A77;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .destination button:hover {
+    background-color: #778DA9;
+  }
+  
+  .tableauReservation {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.tableauReservation > * {
+    width: 300px; /* Ajuste la largeur des éléments à l'intérieur */
+    min-width: 200px; /* Garantit qu'ils ne deviennent pas trop petits */
+}
+  
+  .tableauReservation select {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #415A77;
+    border-radius: 10px;
+    font-size: large;
+    font-family: "Lucida fax";
+    background-color: white;
+  }
+  
+  /* Tableau */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  thead tr:first-child {
+    background-color: #1B263B;
+    color: rgb(0, 0, 0);
+  }
+  
+  thead tr:last-child {
+    background-color: #415A77;
+    color: rgb(0, 0, 0);
+  }
+  
+  th {
+    padding: 15px;
+    text-align: center;
+    font-family: "Lucida fax";
+    border: 1px solid #778DA9;
+  }
+  
+  td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #778DA9;
+    font-family: "Lucida fax";
+  }
+  
+  tbody tr:hover {
+    background-color: #f8fafc;
+  }
+  
+  /* Radio buttons */
+  input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #415A77;
+    border-radius: 50%;
+    appearance: none;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  input[type="radio"]:checked {
+    background-color: #415A77;
+    border-color: #415A77;
+    box-shadow: inset 0 0 0 4px white;
+  }
+  
+  /* Bouton de validation */
+  #selectionForm button[type="submit"] {
+    display: block;
+    margin: 30px auto;
+    padding: 10px 30px;
+    background-color: #415A77;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: large;
+    font-family: "Lucida fax";
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #selectionForm button[type="submit"]:hover {
+    background-color: #778DA9;
+  }

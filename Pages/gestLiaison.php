@@ -40,24 +40,24 @@
     </nav>
 
     <div class="container-add">
-      <button class="btn-add" id="addLiaison">Ajouter</button>
-      <button class="btn-add" id="modifLiaison">Modifier</button>
+      <button class="btn-add" id="addTraversee">Ajouter</button>
+      <button class="btn-add" id="modification">Modifier</button>
     </div>
 
     <script>
     // Ajouter un gestionnaire d'événements au bouton
-    document.getElementById('addLiaison').addEventListener('click', function() {
+    document.getElementById('addTraversee').addEventListener('click', function() {
       <?php if (isset($prenom) && isset($nom)): ?>
-        window.location.href = 'addLiaison.php'; // Redirige vers la page de réservation si connecté
+        window.location.href = 'addTraversee.php'; // Redirige vers la page de réservation si connecté
       <?php else: ?>
         window.location.href = 'connexion.php'; // Redirige vers la page de connexion si non connecté
       <?php endif; ?>
     });
 
     // Ajouter un gestionnaire d'événements au bouton
-    document.getElementById('modifLiaison').addEventListener('click', function() {
+    document.getElementById('modification').addEventListener('click', function() {
       <?php if (isset($prenom) && isset($nom)): ?>
-        window.location.href = 'modifLiaison.php'; // Redirige vers la page de réservation si connecté
+        window.location.href = 'modification.php'; // Redirige vers la page de réservation si connecté
       <?php else: ?>
         window.location.href = 'connexion.php'; // Redirige vers la page de connexion si non connecté
       <?php endif; ?>

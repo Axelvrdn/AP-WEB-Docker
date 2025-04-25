@@ -42,7 +42,7 @@
     <section class="connexion">
         <h1>Connexion à votre <span class="titre1">Compte</span></h1>
         <br><br>
-        <form action="connexion.php" method="POST" id="connexionForm">
+        <form method="POST" id="connexionForm">
             <div class="form-group">
                 <label for="email">Adresse e-mail :</label>
                 <input type="email" id="email" name="email" />

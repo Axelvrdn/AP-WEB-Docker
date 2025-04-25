@@ -12,7 +12,7 @@ function selectionnerSecteur(nomSecteur) {
     selectDate.innerHTML = '<option value="">Sélectionner une date</option>';
 
     // Mise à jour des traversées
-    fetch('get_traversees.php?nom_secteur=' + encodeURIComponent(nomSecteur))
+    fetch('../Get/get_traverseesAdmin.php?nom_secteur=' + encodeURIComponent(nomSecteur))
         .then(response => response.json())
         .then(data => {
             data.forEach(desc => {
@@ -25,7 +25,7 @@ function selectionnerSecteur(nomSecteur) {
         .catch(error => console.error('Erreur AJAX (traversées) :', error));
 
     // Mise à jour de la table avec les traversées
-    fetch('get_infos.php?nom_secteur=' + encodeURIComponent(nomSecteur))
+    fetch('../Get/get_infosAdmin.php?nom_secteur=' + encodeURIComponent(nomSecteur))
         .then(response => response.json())
         .then(data => {
             let tbody = document.querySelector('tbody');
@@ -39,11 +39,14 @@ function selectionnerSecteur(nomSecteur) {
             data.forEach(info => {
                 let row = `<tr>
                     <td>${info.id_travers}</td>
+                    <td>${info.desc_travers}</td>
+                    <td>${info.date_travers}</td>
                     <td>${info.heure_travers}</td>
                     <td>${info.nom_bateau}</td>
                     <td>${info.Passager}</td>
                     <td>${info["véhicule inf2m"]}</td>
                     <td>${info["véhicule sup2m"]}</td>
+                    <td><input type="radio" name="id_travers" value="${info.id_travers}"></td>
                 </tr>`;
                 tbody.innerHTML += row;
             });
@@ -68,7 +71,7 @@ function selectionnerTraversee(descTravers) {
     }
 
     // Mise à jour de la liste des dates
-    fetch('get_dates.php?desc_travers=' + encodeURIComponent(descTravers))
+    fetch('../Get/get_datesAdmin.php?desc_travers=' + encodeURIComponent(descTravers))
         .then(response => response.json())
         .then(data => {
             let select = document.getElementById('date_traversee');
@@ -84,7 +87,7 @@ function selectionnerTraversee(descTravers) {
         .catch(error => console.error('Erreur AJAX (dates) :', error));
 
     // Mettre à jour la table avec les infos
-    fetch('get_infos.php?nom_secteur=' + encodeURIComponent(secteurSelectionne) + '&desc_travers=' + encodeURIComponent(descTravers))
+    fetch('../Get/get_infosAdmin.php?nom_secteur=' + encodeURIComponent(secteurSelectionne) + '&desc_travers=' + encodeURIComponent(descTravers))
         .then(response => response.json())
         .then(data => {
             let tbody = document.querySelector('tbody');
@@ -98,11 +101,14 @@ function selectionnerTraversee(descTravers) {
             data.forEach(info => {
                 let row = `<tr>
                     <td>${info.id_travers}</td>
+                    <td>${info.desc_travers}</td>
+                    <td>${info.date_travers}</td>
                     <td>${info.heure_travers}</td>
                     <td>${info.nom_bateau}</td>
                     <td>${info.Passager}</td>
                     <td>${info["véhicule inf2m"]}</td>
                     <td>${info["véhicule sup2m"]}</td>
+                    <td><input type="radio" name="id_travers" value="${info.id_travers}"></td>
                 </tr>`;
                 tbody.innerHTML += row;
             });
@@ -120,7 +126,7 @@ function selectionnerDate(dateTravers) {
 
     console.log(`🔍 Mise à jour du tableau avec : Secteur = ${secteurSelectionne}, Traversée = ${descTravers}, Date = ${dateTravers}`);
 
-    fetch(`get_infos.php?nom_secteur=${encodeURIComponent(secteurSelectionne)}&desc_travers=${encodeURIComponent(descTravers)}&date_travers=${encodeURIComponent(dateTravers)}`)
+    fetch(`../Get/get_infosAdmin.php?nom_secteur=${encodeURIComponent(secteurSelectionne)}&desc_travers=${encodeURIComponent(descTravers)}&date_travers=${encodeURIComponent(dateTravers)}`)
         .then(response => response.json())
         .then(data => {
             let tbody = document.querySelector('tbody');
@@ -134,11 +140,14 @@ function selectionnerDate(dateTravers) {
             data.forEach(info => {
                 let row = `<tr>
                     <td>${info.id_travers}</td>
+                    <td>${info.desc_travers}</td>
+                    <td>${info.date_travers}</td>
                     <td>${info.heure_travers}</td>
                     <td>${info.nom_bateau}</td>
                     <td>${info.Passager}</td>
                     <td>${info["véhicule inf2m"]}</td>
                     <td>${info["véhicule sup2m"]}</td>
+                    <td><input type="radio" name="id_travers" value="${info.id_travers}"></td>
                 </tr>`;
                 tbody.innerHTML += row;
             });
@@ -160,17 +169,26 @@ document.addEventListener("DOMContentLoaded", function () {
     // Écouteur pour capter le changement de sélection du radio button
     document.querySelector("tbody").addEventListener("change", function (event) {
         if (event.target.name === "id_travers") {
-            let selectedRow = event.target.closest("tr"); // Récupère la ligne sélectionnée
-            let heureTravers = selectedRow.cells[1].textContent.trim(); // Récupère l'heure
-            heureField.value = heureTravers; // Remplit le champ caché
+            let selectedRow = event.target.closest("tr");
+    
+            // 🧠 Assure-toi que les index correspondent bien à ton tableau HTML
+            document.getElementById('id_travers_field').value = selectedRow.cells[0].textContent.trim(); // id_travers
+            document.getElementById('desc_travers_field').value = selectedRow.cells[1].textContent.trim(); // desc_travers
+            document.getElementById('date_travers_field').value = selectedRow.cells[2].textContent.trim(); // date_travers
+            document.getElementById('heure_travers_field').value = selectedRow.cells[3].textContent.trim(); // heure_travers
+            document.getElementById('nom_bateau_field').value = selectedRow.cells[4].textContent.trim(); // nom_bateau
+            
         }
     });
+    
+    
 
-    form.addEventListener("submit", function () {
+    /*form.addEventListener("submit", function () {
         document.getElementById('desc_travers_field').value = selectTraversee.value || "";
         document.getElementById('date_travers_field').value = selectDate.value || "";
-    });
+    });*/
 });
+
 document.getElementById("selectionForm").addEventListener("submit", function(event) {
     let selectedTravers = document.querySelector('input[name="id_travers"]:checked');
     if (!selectedTravers) {

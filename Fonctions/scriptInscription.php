@@ -103,9 +103,25 @@ if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["email"]) &&
         if ($validNom && $validPrenom && $validEmail && $validPwd) {
             if (!ifExistEmail($connexion, $email)) {
                 insertUser ($connexion, $nom, $prenom, $email, $password);
+                session_regenerate_id(true); // Sécurisation de la session
+                $_SESSION['user_id'] = $user['id_utilisateur'];
+                $_SESSION['typer_user'] = $user['typer_user']; // Stocke le type d'utilisateur
+
+                // Redirection selon le type d'utilisateur
+                if ($user['typer_user'] === 'Gestionnaire') {
+                    header("Location: ../Pages/connexion.php"); // Page gestionnaire
+                } else {
+                    header("Location: ../Pages/connexion.php"); // Page client
+                }
+                exit();
             } else {
-                echo "<p style='color: red;'>L'adresse e-mail existe déjà.</p>";
+                $_SESSION['error'] = "Email ou mot de passe incorrect.";
+                header("Location: ../Pages/connexion.php");
+                exit();
             }
+        } else {
+            header("../Pages/connexion.php");
+            exit();
         }
     }
 }

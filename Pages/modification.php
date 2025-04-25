@@ -16,19 +16,21 @@
     <!-- Barre de navigation -->
     <nav class="menu">
       <ul>
-        <?php if ($_SESSION['typer_user'] === 'Gestionnaire'): ?>
+          <?php if ($_SESSION['typer_user'] === 'Gestionnaire'): ?>
           <li class="titre-marieteam"><a href="accueilAdmin.php"><b>MarieTeam</b></a></li>
           <?php else: ?>
-              <li class="titre-marieteam"><a href="index.php"><b>MarieTeam</b></a></li>
-          <?php endif; ?>        <div class="nav-buttons">
+          <li class="titre-marieteam"><a href="index.php"><b>MarieTeam</b></a></li>
+          <?php endif; ?>        
+          
+          <div class="nav-buttons">
 
         <?php if (isset($prenom) && isset($nom)): ?>
-            <li><a class='active' href="reserver.php">Réserver</a></li>
+            <li><a href="adminStats.php">Statistiques réservation</a></li>
           <?php else: ?>
             <li><a href="connexion.php">Réserver</a></li>
           <?php endif; ?>
 
-          <li><a href="index.php">À propos</a></li>
+          <li><a href="gestLiaison.php" class="active">Gestion des liaisons</a></li>
 
           <?php if (isset($prenom) && isset($nom)): ?>
             <li><a href="profile.php"><b class="connexion-btn"><?php echo $prenom . ' ' . $nom; ?></b></a></li>
@@ -40,7 +42,7 @@
     </nav>
 
     <?php
-        include '../Fonctions/scriptReserver.php';
+        include '../Fonctions/scriptReserverAdmin.php';
 
         // Récupérer tous les secteurs
         $secteurs = getSecteurs();
@@ -71,11 +73,15 @@
             </select>
         </div>
     </div>
-    <form id="selectionForm" action="reservation.php" method="POST">
+    <form id="selectionForm" action="modificationLiaison.php" method="POST">
         <!-- Champs cachés pour stocker les infos -->
+        <input type="hidden" name="id_travers" id="id_travers_field">
         <input type="hidden" name="desc_travers" id="desc_travers_field">
         <input type="hidden" name="date_travers" id="date_travers_field">
         <input type="hidden" name="heure_travers" id="heure_travers_field">
+        <input type="hidden" name="nom_bateau" id="nom_bateau_field">
+
+
 
         <table>
             <thead>
@@ -118,7 +124,7 @@
     </form>
 
     
-    <script src="../JavaScript/ScriptRéserver.js"></script>
+    <script src="../JavaScript/ScriptRéserverAdmin.js"></script>
 
 </body>
 </html>

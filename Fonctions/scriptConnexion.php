@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit();
             } else {
                 $_SESSION['error'] = "Email ou mot de passe incorrect.";
-                header("../Pages/connexion.php");
+                header("Location: ../Pages/connexion.php");
                 exit();
             }
         } else {

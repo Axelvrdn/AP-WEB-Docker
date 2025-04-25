@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ($nbVi5 ? $nbVi5 * $prixVi5 : 0) +
     ($nbF  ? $nbF  * $prixF  : 0) +
     ($nbCc ? $nbCc * $prixCc : 0) +
-    ($nbC  ? $nbC  * $prixCc : 0);
+    ($nbC  ? $nbC  * $prixC : 0);
 
 
     $id_resa = AddResa($id_travers, $id_client);
@@ -107,20 +107,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 <table class ="_facture-table">
   <tbody>
-    <?php if($nbA!=null){echo"<tr><td>Adulte</td><td>$nbA</td></tr>";}; ?>
-    <?php if($nbJ!=null){echo"<tr><td>Junior 8 à 18 ans</td><td>$nbJ</td></tr>";}; ?>
-    <?php if($nbE!=null){echo"<tr><td>Enfant 0 à 7 ans</td><td>$nbE</td></tr>";}; ?>
-    <?php if($nbVi4!=null){echo"<tr><td>Voiture long. inf. 4m</td><td>$nbVi4</td></tr>";}; ?>
-    <?php if($nbVi5!=null){echo"<tr><td>Voiture long. inf. 5m</td><td>$nbVi5</td></tr>";}; ?>
-    <?php if($nbF!=null){echo"<tr><td>Fourgon</td><td>$nbF</td></tr>";}; ?>
-    <?php if($nbCc!=null){echo"<tr><td>Camping Car</td><td>$nbCc</td></tr>";}; ?>
-    <?php if($nbC!=null){echo"<tr><td>Camion</td><td>$nbC</td></tr>";}; ?>
+    <?php if($nbA!=null){echo"<tr><td>Adulte</td><td>$nbA</td><td>$prixA €</td></tr>";}; ?>
+    <?php if($nbJ!=null){echo"<tr><td>Junior 8 à 18 ans</td><td>$nbJ</td><td>$prixJ €</td></tr>";}; ?>
+    <?php if($nbE!=null){echo"<tr><td>Enfant 0 à 7 ans</td><td>$nbE</td><td>$prixE €</td></tr>";}; ?>
+    <?php if($nbVi4!=null){echo"<tr><td>Voiture long. inf. 4m</td><td>$nbVi4</td><td>$prixVi4 €</td></tr>";}; ?>
+    <?php if($nbVi5!=null){echo"<tr><td>Voiture long. inf. 5m</td><td>$nbVi5</td><td>$prixVi5 €</td></tr>";}; ?>
+    <?php if($nbF!=null){echo"<tr><td>Fourgon</td><td>$nbF</td><td>$prixF €</td></tr>";}; ?>
+    <?php if($nbCc!=null){echo"<tr><td>Camping Car</td><td>$nbCc</td><td>$prixCc €</td></tr>";}; ?>
+    <?php if($nbC!=null){echo"<tr><td>Camion</td><td>$nbC</td><td>$prixC €</td></tr>";}; ?>
 
   </tbody>
 </table>
 
-<form action="POST" action="payer.php">
-  <input type="hidden">
+<form action="payer.php" method="POST">
+
+            <input type="hidden" name="id_resa" value="<?php echo "$id_resa"?>" >
+            <input type="hidden" name="nbA" value="<?php echo "$nbA"?>" >
+            <input type="hidden" name="nbJ" value="<?php echo "$nbJ"?>" >
+            <input type="hidden" name="nbE" value="<?php echo "$nbE"?>" >
+            <input type="hidden" name="nbVi4" value="<?php echo "$nbVi4"?>" >
+            <input type="hidden" name="nbVi5" value="<?php echo "$nbVi5"?>" >
+            <input type="hidden" name="nbF" value="<?php echo "$nbF"?>" >
+            <input type="hidden" name="nbCc" value="<?php echo "$nbCc"?>" >
+            <input type="hidden" name="nbC" value="<?php echo "$nbC"?>" >
 
         <button class="_reservation-button" type="submit">Payer <?php echo "$prixTotal"?>€</button>
         </form>

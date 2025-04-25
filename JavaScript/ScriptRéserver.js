@@ -39,6 +39,8 @@ function selectionnerSecteur(nomSecteur) {
             data.forEach(info => {
                 let row = `<tr>
                     <td>${info.id_travers}</td>
+                    <td>${info.desc_travers}</td>
+                    <td>${info.date_travers}</td>
                     <td>${info.heure_travers}</td>
                     <td>${info.nom_bateau}</td>
                     <td>${info.Passager}</td>
@@ -99,6 +101,8 @@ function selectionnerTraversee(descTravers) {
             data.forEach(info => {
                 let row = `<tr>
                     <td>${info.id_travers}</td>
+                    <td>${info.desc_travers}</td>
+                    <td>${info.date_travers}</td>
                     <td>${info.heure_travers}</td>
                     <td>${info.nom_bateau}</td>
                     <td>${info.Passager}</td>
@@ -136,6 +140,8 @@ function selectionnerDate(dateTravers) {
             data.forEach(info => {
                 let row = `<tr>
                     <td>${info.id_travers}</td>
+                    <td>${info.desc_travers}</td>
+                    <td>${info.date_travers}</td>
                     <td>${info.heure_travers}</td>
                     <td>${info.nom_bateau}</td>
                     <td>${info.Passager}</td>

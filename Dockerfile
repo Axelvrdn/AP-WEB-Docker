@@ -1,14 +1,22 @@
-# Utiliser une image PHP avec Apache
 FROM php:8.2-apache
 
-# Installer les extensions nécessaires (ex: mysqli pour MySQL)
+# Installer les extensions nécessaires
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Copier le code du projet dans le conteneur
+# Activer mod_rewrite
+RUN a2enmod rewrite
+
+# Autoriser l'utilisation de .htaccess
+RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+
+# Copier le script d'entrée
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Copier le code (sera écrasé par le volume, mais utile pour build pur)
 COPY . /var/www/html/
 
-# Donner les bons droits
-RUN chown -R www-data:www-data /var/www/html
+# Entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
 
-# Exposer le port 80 pour accéder au site
 EXPOSE 80
