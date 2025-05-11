@@ -1,13 +1,9 @@
 <?php
+session_start();
 
-function connexionBase($servername, $username, $password, $dbname) {
-    try {
-        return new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    } catch(PDOException $e) {
-        echo "Erreur de connexion : " . $e->getMessage();
-        return null;
-    }
-}
+// Inclusion de la connexion centralisée
+include_once "../pdo/pdo.php";
+global $pdo;
 
 function validNom($nom) {
     if (trim(htmlspecialchars($nom)) == "") {
@@ -78,18 +74,11 @@ function insertUser ($connexion, $nom, $prenom, $email, $password) {
     $monObjPdoStatement->bindValue(':mail', $email, PDO::PARAM_STR);
     $monObjPdoStatement->bindValue(':mdp', $pwdHach, PDO::PARAM_STR);
     
-    $executionOK = $monObjPdoStatement->execute(); 
+    $monObjPdoStatement->execute();
 }
 
 if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["email"]) && isset($_POST["password"])) {
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $dbname = "marieteam";
-
-    $connexion = connexionBase($servername, $username, $password, $dbname);
-
-    if ($connexion) {
+    if ($pdo) {
         $nom = $_POST["nom"];
         $prenom = $_POST["prenom"];
         $email = $_POST["email"];
@@ -101,27 +90,25 @@ if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["email"]) &&
         $validPwd = validPwd($password);
 
         if ($validNom && $validPrenom && $validEmail && $validPwd) {
-            if (!ifExistEmail($connexion, $email)) {
-                insertUser ($connexion, $nom, $prenom, $email, $password);
-                session_regenerate_id(true); // Sécurisation de la session
-                $_SESSION['user_id'] = $user['id_utilisateur'];
-                $_SESSION['typer_user'] = $user['typer_user']; // Stocke le type d'utilisateur
+            if (!ifExistEmail($pdo, $email)) {
+                insertUser($pdo, $nom, $prenom, $email, $password);
 
-                // Redirection selon le type d'utilisateur
-                if ($user['typer_user'] === 'Gestionnaire') {
-                    header("Location: ../Pages/connexion.php"); // Page gestionnaire
-                } else {
-                    header("Location: ../Pages/connexion.php"); // Page client
-                }
+                // Redirection après inscription
+                header("Location: ../Pages/connexion.php");
                 exit();
             } else {
-                $_SESSION['error'] = "Email ou mot de passe incorrect.";
+                $_SESSION['error'] = "Cette adresse email est déjà utilisée.";
                 header("Location: ../Pages/connexion.php");
                 exit();
             }
         } else {
-            header("../Pages/connexion.php");
+            header("Location: ../Pages/connexion.php");
             exit();
         }
+    } else {
+        $_SESSION['error'] = "La connexion à la base de données a échoué.";
+        header("Location: ../Pages/connexion.php");
+        exit();
     }
 }
+?>

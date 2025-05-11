@@ -15,34 +15,12 @@
   </head>
 
   <body>
+  <?php
+    if ($_SESSION['typer_user'] === 'Gestionnaire')
+  {?>
 
-    <!-- Barre de navigation -->
-    <nav class="menu">
-      <ul>
-          <?php if ($_SESSION['typer_user'] === 'Gestionnaire'): ?>
-          <li class="titre-marieteam"><a href="accueilAdmin.php"><b>MarieTeam</b></a></li>
-          <?php else: ?>
-          <li class="titre-marieteam"><a href="index.php"><b>MarieTeam</b></a></li>
-          <?php endif; ?>        
-          
-          <div class="nav-buttons">
+  <?php include '../navbar/navbarAdmin.php';?>
 
-        <?php if (isset($prenom) && isset($nom)): ?>
-            <li><a href="adminStats.php">Statistiques réservation</a></li>
-          <?php else: ?>
-            <li><a href="connexion.php">Réserver</a></li>
-          <?php endif; ?>
-
-          <li><a class="active" href="gestLiaison.php">Gestion des liaisons</a></li>
-
-          <?php if (isset($prenom) && isset($nom)): ?>
-            <li><a href="profile.php"><b class="connexion-btn"><?php echo $prenom . ' ' . $nom; ?></b></a></li>
-          <?php else: ?>
-            <li><a href="connexion.php"><b class="connexion-btn">Connexion</b></a></li>
-          <?php endif; ?>
-        </div>
-      </ul>
-    </nav>
 
     <br><br><br><br>
     <section class="connexion">
@@ -87,6 +65,11 @@
             <button type="submit" class="btn-connexion" >Enregistrer les modifications</button><br>
         </form>
     </section>
+    <?php 
+      }
+      else {
+        header("Location: ../Pages/index.php"); // Page client
+    }?> 
 
   </body>
 </html>

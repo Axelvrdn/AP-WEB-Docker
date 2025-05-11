@@ -1,19 +1,9 @@
 <?php
 session_start(); // Toujours en premier
 
-function connexionBase($servername, $username, $password, $dbname) {
-    try {
-        return new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password, [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES => false
-        ]);
-    } catch (PDOException $e) {
-        $_SESSION['error'] = "Impossible de se connecter à la base de données. Veuillez réessayer plus tard.";
-        header("Location: ../Pages/connexion.php");
-        exit();
-    }
-}
+// Inclusion de la connexion centralisée
+include_once "../pdo/pdo.php";
+global $pdo;
 
 function validEmail($email) {
     if (empty(trim($email))) {
@@ -43,20 +33,13 @@ function getUserByEmail($connexion, $email) {
 
 // Vérifie si le formulaire est soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $dbname = "marieteam";
-
-    $connexion = connexionBase($servername, $username, $password, $dbname);
-
-    if ($connexion) {
+    if ($pdo) {
         $email = trim($_POST["email"]);
         $password = $_POST["password"];
 
         // Vérification des champs
         if (validEmail($email) && validPwd($password)) {
-            $user = getUserByEmail($connexion, $email);
+            $user = getUserByEmail($pdo, $email);
 
             if (!$user) { // L'utilisateur n'existe pas
                 $_SESSION['error'] = "Email ou mot de passe incorrect.";
@@ -83,9 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit();
             }
         } else {
-            header("../Pages/connexion.php");
+            header("Location: ../Pages/connexion.php");
             exit();
         }
+    } else {
+        $_SESSION['error'] = "La connexion à la base de données a échoué.";
+        header("Location: ../Pages/connexion.php");
+        exit();
     }
 }
 ?>

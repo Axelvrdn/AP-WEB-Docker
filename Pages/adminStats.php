@@ -11,23 +11,12 @@
     <title>MarieTeam</title>
 </head>
 <body>
+<?php
+    if ($_SESSION['typer_user'] === 'Gestionnaire')
+  {?>
 
-    <!-- Barre de navigation -->
-    <nav class="menu">
-      <ul>
-          <?php if ($_SESSION['typer_user'] === 'Gestionnaire'): ?>
-          <li class="titre-marieteam"><a href="accueilAdmin.php"><b>MarieTeam</b></a></li>
-          <?php else: ?>
-          <li class="titre-marieteam"><a href="index.php"><b>MarieTeam</b></a></li>
-          <?php endif; ?>        
-          
-          <div class="nav-buttons">
-            <li><a class="active" href="adminStats.php">Statistiques réservation</a></li>
-            <li><a href="gestLiaison.php">Gestion des liaisons</a></li>
-            <li><a href="profile.php"><b class="connexion-btn"><?php echo isset($prenom) ? $prenom . ' ' . $nom : 'Connexion'; ?></b></a></li>
-          </div>
-      </ul>
-    </nav>
+    <?php include '../navbar/navbarAdmin.php';?>
+
 
     <!-- Formulaire de sélection de période -->
     <div class="stats-form">
@@ -90,5 +79,10 @@
         </div>
     </div>
     <?php endif; ?>
+    <?php 
+      }
+      else {
+        header("Location: ../Pages/index.php"); // Page client
+    }?> 
 </body>
 </html>

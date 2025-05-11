@@ -6,14 +6,9 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-function connexionBase($servername, $username, $password, $dbname) {
-    try {
-        return new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    } catch(PDOException $e) {
-        echo "Erreur de connexion : " . $e->getMessage();
-        return null;
-    }
-}
+// Inclusion de la connexion PDO centralisée
+include_once "../pdo/pdo.php";
+global $pdo;
 
 function validNom($nom) {
     if (trim(htmlspecialchars($nom)) == "") {
@@ -59,7 +54,7 @@ function validPwd($password) {
         echo "<p style='color: red;'>Un mot de passe est requis.</p>";
         return false;
     } else {
-        if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{12,}$/", $password)){
+        if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{12,}$/", $password)) {
             echo "<p style='color: red;'>Le mot de passe doit faire au moins 12 caractères et contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial.</p>";
             return false;
         }
@@ -75,28 +70,25 @@ function ifExistEmail($connexion, $email) {
     return $laLigne['nbemail'] > 0;
 }
 
-
 function updateUser($connexion, $idUtilisateur, $nom, $prenom, $email, $password) {
     $pwdHach = password_hash($password, PASSWORD_DEFAULT);
 
     $query = "UPDATE utilisateur SET nom_user = :nom, prenom_user = :prenom, mail_user = :email, mdp_user = :pwdHach WHERE id_utilisateur = :id";
-    $params = [':nom' => $nom, ':prenom' => $prenom, ':email' => $email, ':id' => $idUtilisateur, ':pwdHach' => $pwdHach] ;
+    $params = [
+        ':nom' => $nom,
+        ':prenom' => $prenom,
+        ':email' => $email,
+        ':pwdHach' => $pwdHach,
+        ':id' => $idUtilisateur
+    ];
     
     $stmt = $connexion->prepare($query);
-    
     return $stmt->execute($params);
 }
 
 // Récupération des données du formulaire
 if (isset($_POST["nom"], $_POST["prenom"], $_POST["email"], $_POST["password"])) {
-    $servername = "127.0.0.1";
-    $username = "root";
-    $password = "";
-    $dbname = "marieteam";
-
-    $connexion = connexionBase($servername, $username, $password, $dbname);
-
-    if ($connexion) {
+    if ($pdo) {
         $idUtilisateur = $_SESSION['user_id'];
         $nom = trim($_POST["nom"]);
         $prenom = trim($_POST["prenom"]);
@@ -109,12 +101,13 @@ if (isset($_POST["nom"], $_POST["prenom"], $_POST["email"], $_POST["password"]))
         $validEmail = validEmail($email);
         $validPwd = validPwd($newPassword);
 
-        // Après la mise à jour réussie des données utilisateur
         if ($validNom && $validPrenom && $validEmail && $validPwd) {
-            if (!ifExistEmail($connexion, $email)) {
-                updateUser($connexion, $idUtilisateur, $nom, $prenom, $email, $newPassword);
+            if (!ifExistEmail($pdo, $email) || $email === $_SESSION['email']) {
+                updateUser($pdo, $idUtilisateur, $nom, $prenom, $email, $newPassword);
                 $_SESSION['messageUpdate'] = "Informations mises à jour avec succès!";
-            } 
+            } else {
+                $_SESSION['errorUpdate'] = "Cette adresse e-mail est déjà utilisée.";
+            }
         }
     }
 }

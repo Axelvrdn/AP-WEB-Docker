@@ -1,3 +1,5 @@
+<?php include '../Fonctions/scriptUserConnecte.php'; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,39 +10,10 @@
 <body>
 
 
-    <?php
-    // Inclure le fichier qui vérifie si l'utilisateur est connecté et récupère son prénom et nom
-    include '../Fonctions/scriptUserConnecte.php'; 
-    ?>
 
     
-    <!-- Barre de navigation -->
-    <nav class="menu">
-      <ul>
-        <?php if ($_SESSION['typer_user'] === 'Gestionnaire'): ?>
-          <li class="titre-marieteam"><a href="accueilAdmin.php"><b>MarieTeam</b></a></li>
-          <?php else: ?>
-              <li class="titre-marieteam"><a href="index.php"><b>MarieTeam</b></a></li>
-          <?php endif; ?>        <div class="nav-buttons">
+  <?php include '../navbar/navbarClient.php';?>
 
-        <?php if (isset($prenom) && isset($nom)): ?>
-            <li><a class='active' href="reserver.php">Réserver</a></li>
-          <?php else: ?>
-            <li><a href="connexion.php">Réserver</a></li>
-          <?php endif; ?>
-
-          <li><a href="index.php">À propos</a></li>
-
-          <?php if (isset($prenom) && isset($nom)): ?>
-            <li><a href="profile.php"><b class="connexion-btn"><?php echo $prenom . ' ' . $nom; ?></b></a></li>
-          <?php else: ?>
-            <li><a href="connexion.php"><b class="connexion-btn">Connexion</b></a></li>
-          <?php endif; ?>
-        </div>
-      </ul>
-    </nav>
-    <br>
-<body>
     
 
 

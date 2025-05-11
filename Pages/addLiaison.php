@@ -20,29 +20,11 @@ $bateau = isset($_POST['bateau']) ? (int) $_POST['bateau'] : 0;
   <title>MarieTeam</title>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="menu">
-    <ul>
-      <?php if ($_SESSION['typer_user'] === 'Gestionnaire'): ?>
-        <li class="titre-marieteam"><a href="accueilAdmin.php"><b>MarieTeam</b></a></li>
-      <?php else: ?>
-        <li class="titre-marieteam"><a href="index.php"><b>MarieTeam</b></a></li>
-      <?php endif; ?>
-      <div class="nav-buttons">
-        <?php if (isset($prenom) && isset($nom)): ?>
-          <li><a href="adminStats.php">Statistiques réservation</a></li>
-        <?php else: ?>
-          <li><a href="connexion.php">Réserver</a></li>
-        <?php endif; ?>
-        <li><a class="active" href="gestLiaison.php">Gestion des liaisons</a></li>
-        <?php if (isset($prenom) && isset($nom)): ?>
-          <li><a href="profile.php"><b class="connexion-btn"><?php echo $prenom . ' ' . $nom; ?></b></a></li>
-        <?php else: ?>
-          <li><a href="connexion.php"><b class="connexion-btn">Connexion</b></a></li>
-        <?php endif; ?>
-      </div>
-    </ul>
-  </nav>
+<?php
+    if ($_SESSION['typer_user'] === 'Gestionnaire')
+  {?>
+  <?php include '../navbar/navbarAdmin.php';?>
+
 
   <section class="connexion">
     <h2>Informations sur la traversée :</h2>
@@ -85,5 +67,10 @@ $bateau = isset($_POST['bateau']) ? (int) $_POST['bateau'] : 0;
       <button type="submit" name="nouvelle_liaison">Créer la liaison</button>
     </form>
   </section>
+  <?php 
+      }
+      else {
+        header("Location: ../Pages/index.php"); // Page client
+    }?> 
 </body>
 </html>

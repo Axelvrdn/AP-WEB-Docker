@@ -20,7 +20,7 @@ if (isset($_SESSION['user_id'])) {
         ]);
 
         // Préparer la requête pour obtenir le prénom et le nom de l'utilisateur
-        $query = $connexion->prepare("SELECT prenom_user, nom_user FROM utilisateur WHERE id_utilisateur = :user_id");
+        $query = $connexion->prepare("SELECT prenom_user, nom_user, typer_user FROM utilisateur WHERE id_utilisateur = :user_id");
         $query->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
         $query->execute();
 
@@ -30,6 +30,7 @@ if (isset($_SESSION['user_id'])) {
             // Stocker le prénom et le nom dans des variables pour les utiliser dans la page
             $prenom = $user['prenom_user'];
             $nom = $user['nom_user'];
+            $typerUser = $user['typer_user'];
         } else {
             // Si l'utilisateur n'est pas trouvé dans la base de données, rediriger vers la page de connexion
             $_SESSION['error'] = "Utilisateur non trouvé.";
